@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# This script invokes ${FVWM_USERDIR}/transset-df-6/transset-df on the
+# specified window id and sets the opacity to 0.90
+#
+# This script must be invoked from FVWM so that the 
+# ${FVWM_USERDIR} variable is set
+#
+# Windows in the EXCLUDES list (space separated list) will not be made
+# transparent
+#
+# Depends on xprop
+# and transset-df-6 from here: 
+# http://forchheimer.se/transset-df/transset-df-6.tar.gz
+#
+
+#Don't make these window classes transparent:
+EXCLUDES="MPlayer Firefox"
+
+
+CLASS=`xprop -id $1 WM_CLASS | sed 's/.*"\(.*\)".*/\1/g'`
+for e in $EXCLUDES ; do
+    if [ "$e" = "$CLASS" ] ; then
+        exit 0
+    fi
+done
+   
+${FVWM_USERDIR}/transset-df-6/transset-df -i $1 0.90 >/dev/null

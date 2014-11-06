@@ -1,0 +1,293 @@
+# FVWM Configuration
+
+# Pre-requisites:
+#  xload (swallowed in buttons)
+#  xosview (swallowed in buttons (on laptops))
+#  stalonetray (swallowed in buttons)
+#  rxvt (hard-coded terminal)
+#  xcompmgr (semi-optional - for transparent windows)
+#  imagemagick (for wallpaper browser)
+
+## Various Global Settings
+
+ignoremodifiers l25
+BorderStyle -- Sunk
+ButtonStyle All (Colorset 0 -- flat)
+AddButtonStyle 1 MiniIcon (HiddenHandles NoInset Hilight3Doff -- flat)
+DeskTopSize 2x6
+EdgeScroll 0 0
+EdgeThickness 1
+HideGeometryWindow Always
+TitleStyle (Colorset 0 -- flat)
+MenuStyle * MenuColorset 0, ItemFormat "%s %i %| %l %|% %> ", PopupOffset -2 100, BorderWidth 1, Hilight3DThin
+
+SetEnv TERMINAL "rxvt"
+SetEnv fvwm_wallpaper_dir $[HOME]/conf/wallpaper/
+SetEnv LC_CTYPE zh_CN.UTF-8
+ImagePath .fvwm/icons:/usr/share/pixmaps/:+:$[fvwm_wallpaper_dir]
+
+## Styles
+
+### Global Styles
+
+Style * TitleAtLeft, NoHandles, SloppyFocus, MinOverlapPlacement, SnapAttraction 3 SameType Screen, Colorset 0, HilightFore white, HilightBack green
+ColorSet 0 RootTransparent Buffer, Tint #4A516A 50, fg white, bg black 
+
+### Icons
+
+Style "*xterm*" MiniIcon console.svg:32x32
+Style "xcalc" MiniIcon calculate.svg:32x32
+Style "URxvt" MiniIcon console.svg:32x32
+Style "*rox*" MiniIcon folder.svg:32x32, EWMHMiniIconOverride
+Style "*nautilus*" MiniIcon folder.svg:32x32, EWMHMiniIconOverride
+Style "Steam" NoIcon, MiniIcon steam.svg:32x32, EWMHMiniIconOverride
+Style "Friends" MiniIcon bubbles4.svg:32x32, EWMHMiniIconOverride
+Style "* - Chat" MiniIcon bubble2.svg:32x32, EWMHMiniIconOverride
+Style "Firefox" MiniIcon firefox.svg:32x32, EWMHMiniIconOverride
+Style "Chromium-browser" MiniIcon chrome.svg:32x32, EWMHMiniIconOverride
+Style "XClipboard" MiniIcon paste2.svg:32x32
+Style MPlayer MiniIcon play2.svg:32x32
+Style "Android SDK Manager" MiniIcon download.svg:32x32, EWMHMiniIconOverride, DecorateTransient
+Style "Apvlv" MiniIcon file-pdf.svg:32x32
+Style "Vim" MiniIcon code.svg:32x32
+
+### Module Styles
+Style FvwmPager Sticky, NoHandles, BorderWidth 1, NoTitle, WindowListSkip, CirculateSkip
+Style SideDock Sticky, NoTitle, WindowListSkip, CirculateSkip
+
+### Module Settings
+
+#### FvwmEvent 
+# Make windows transprent as they are added
+*FvwmEvent: Cmd exec
+*FvwmEvent: add_window $[FVWM_USERDIR]/transit
+*FvwmEvent: PassId
+
+#### FvwmPager
+DestroyModuleConfig FvwmPager: *
+*FvwmPager: Geometry 120x300-0+0
+*FvwmPager: Rows 1, Columns 1
+*FvwmPager: Font none
+*FvwmPager: SmallFont "xft:Aquafont:size=6 Cyberbit:encoding=iso10646-1"
+*FvwmPager: WindowLabelFormat "%t"
+*FvwmPager: Balloons
+*FvwmPager: BalloonFont "xft:Aquafont:size=12 Cyberbit:encoding=iso10646-1"
+*FvwmPager: MiniIcons
+*FvwmPager: WindowColors wheat #4A506A white black
+*FvwmPager: Colorset * 1
+*FvwmPager: UseSkipList 
+Style FvwmPager Sticky, NoHandles, BorderWidth 1, NoTitle, WindowListSkip
+
+
+#### FvwmButtons: SideDock
+
+DestroyModuleConfig SideDock: *
+*SideDock: Geometry 120x320-0+0
+*SideDock: Rows 10
+*SideDock: Colorset 0
+*SideDock: Padding 0 0
+*SideDock: (1x6, Swallow (UseOld) "FvwmPager" "Module FvwmPager" )
+*SideDock: (1x1, Swallow (UseOld) "FvwmApplet-DigitalClock" "FvwmScript $[FVWM_USERDIR]/FvwmApplet-DigitalClock 0")
+*SideDock: (1x1, Swallow (UseOld) "xload" "Exec exec xload -bg black -fg green -hl green")
+# On a laptop, display the battery
+PipeRead \
+' laptop-detect && echo \' *SideDock: (1x1, Swallow (UseOld) "xosbattery" "Exec exec xosview -name battery -title xosbattery")\' || echo Nop'
+# But on a desktop just put an xterm launcher there
+PipeRead \
+' laptop-detect || echo \'*SideDock: (1x1, Icon console.svg:24x24, Action (Mouse 1) "Exec exec x-terminal-emulator")\' || echo Nop '
+*SideDock: (1x1, Swallow (UseOld) "stalonetray" "Exec exec stalonetray -bg black")
+
+Style SideDock WindowListSkip, NeverFocus
+
+## Menus
+
+DestroyMenu WindowOpsMenu
+AddToMenu WindowOpsMenu
++ Move Move
++ Resize Resize
++ "" Nop
++ "Identify" FvwmIdent
++ "Make Sticky" WindowStyle Sticky
++ "Un-Stick" WindowStyle  !Sticky
++ "(Un)Iconify" Iconify
++ "Remove Title" WindowStyle NoTitle
++ "Replace Title" WindowStyle !NoTitle
++ "" Nop
++ Close Close
++ Kill Destroy
+
+DestroyMenu MenuFvwmRoot
+AddToMenu MenuFvwmRoot
++ "Menu" Nop
++ "%enter.svg:24x24%Apps" Popup DynamicAppMenu
++ "%console.svg:24x24%Console" FvwmConsole
++ MissingSubmenuFunction WallpaperBrowser
++ "%images.svg:24x24%Wallpapers" Popup $[fvwm_wallpaper_dir]
++ "%loop2.svg:24x24%Reload" Restart
++ "" Nop
+# Put a lock icon in the menu if xautolock is present
+Test (x xscreensaver) AddToMenu MenuFvwmRoot "%lock.svg:24x24%Lock" Exec exec xscreensaver-command -l
+
+AddToMenu MenuFvwmRoot
++ "%exit.svg:24x24%Exit" Quit
+
+# Dynamic App Menu Generation
+Test (x rox) AddToMenu DynamicAppMenu "%folder-open.svg:24x24%Rox Filer" Exec exec rox
+Test (x nautilus) AddToMenu DynamicAppMenu "%folder-open.svg:24x24%Nautilus" Exec exec nautilus --no-desktop
+Test (x rxvt) AddToMenu DynamicAppMenu "%console.svg:24x24%RXvt" Exec exec rxvt
+Test (x xterm) AddToMenu DynamicAppMenu "%console.svg:24x24%XTerm" Exec exec xterm
+Test (x firefox) AddToMenu DynamicAppMenu "%firefox.svg:24x24%Firefox" Exec exec firefox
+Test (x chromium-browser) AddToMenu DynamicAppMenu "%chrome.svg:24x24%Chromium" Exec exec chromium-browser
+Test (x steam) AddToMenu DynamicAppMenu "%steam.svg:24x24%Steam" Exec exec steam
+Test (x steam) AddToMenu DynamicAppMenu "%bubbles4.svg:24x24%Steam Friends" Exec exec steam "steam://open/friends"
+Test (x steam) AddToMenu DynamicAppMenu "%steam.svg:24x24%Steam Library" Exec exec steam "steam://open/games"
+Test (x nethack,x x-terminal-emulator) AddToMenu DynamicAppMenu "%bug.svg:24x24%Nethack (console)" Exec exec x-terminal-emulator -e nethack
+Test (x slashem,x x-terminal-emulator) AddToMenu DynamicAppMenu "%bug.svg:!24x24%Slashem (console)" Exec exec x-terminal-emulator -e slashem
+Test (x vim,x x-terminal-emulator) AddToMenu DynamicAppMenu "%code.svg:24x24%Vim" Exec exec x-terminal-emulator -T Vim -e vim
+Test (x gvim) AddToMenu DynamicAppMenu "%code.svg:24x24%GVim" Exec exec gvim
+Test (x gedit) AddToMenu DynamicAppMenu "%file3.svg:24x24%GEdit" Exec exec gedit
+Test (x xclipboard) AddToMenu DynamicAppMenu "%paste2.svg:24x24%Clipboard" Exec exec xclipboard
+
+## Key Bindings
+Key Return A 4 Exec exec $TERMINAL
+Key T A 4 Exec exec $TERMINAL
+
+Key h A 4 GoToPage -1p +0p
+Key k A 4 GoToPage +0p -1p
+Key j A 4 GoToPage +0p +1p
+Key l A 4 GoToPage +1p +0p
+Key s A 4 WindowShade
+
+Key m A 4 HalfMax-or-Restore
+Key f A 4 Maximize-or-Restore
+
+Key p A 4 Focus-Prev-Window
+Key n A 4 Focus-Next-Window
+
+Key Escape A 4 Menu MenuFvwmRoot
+Key r A 4 Resize Direction SE
+Key l A CM  Exec exec xscreensaver-command -l
+
+Mouse 1 1 A Menu WindowOpsMenu
+Mouse 1 I A Menu WindowOpsMenu
+Mouse 1 FSTW M Move-Raise-or-Lower
+Mouse 3 FSTW 4 WindowShade-or-Resize-or-not
+
+#This one sticks around on Win+Tab, doesn't immediately switch, have to hit another key for that
+Key Tab A 4 WindowList Root c c NoCurrentDeskTitle, TitleForAllDesks, IconifiedAtEnd, NoHotkeys
+
+## Functions
+
+### Disable Attention Grabbers
+DestroyFunc UrgencyFunc
+Style "*" !FPGrabFocus, GrabFocusOff
+
+### Startup
+DestroyFunc StartFunction
+AddToFunc StartFunction
++ I LoadWallpaper
++ I Module FvwmButtons SideDock
++ I Test (init) Exec exec synclient HorizTwoFingerScroll=1
++ I Test (init) Exec exec synclient ClickFinger3=2
++ I Test (init) Exec exec synclient PalmDetect=1
++ I Test (init) Exec exec xcompmgr
++ I Module FvwmEvent
++ I Test (Restart) Retransit
+#+ I Test (init) Exec exec /usr/bin/xscreensaver -no-splash
++ I Test (init, x xscreensaver) Exec exec xscreensaver 
++ I Test (init) Schedule 1000 DualMonHack
++ I Test (init) Exec exec ibus-daemon -drx
++ I Test (init) Exec exec xrdb -merge .Xresources
+
+DestroyFunc DualMonHack
+AddToFunc DualMonHack
++ I Exec exec xrandr --output DVI-I-1 --left-of DVI-I-2
++ I Restart
+
+### Moving, Raising, Lowering Windows
+DestroyFunc Move-Raise-or-Lower
+AddToFunc Move-Raise-or-Lower
++ M Move
++ C Raise
++ D Lower
+
+### Shading, Resizing
+DestroyFunc WindowShade-or-Resize-or-not
+AddToFunc WindowShade-or-Resize-or-not
++ H Nop
++ M Resize
++ C WindowShade
+
+### Maximizing, Restoring 
+
+# Full height, half the screen, or restore it
+DestroyFunc HalfMax-or-Restore
+AddToFunc HalfMax-or-Restore
++ I State 1 toggle
++ I Current (State 1) ResizeMoveMaximize 50% 100% 0 0
++ I TestRc (NoMatch) Maximize off
+
+# Full screen and remove the title bar, or restore it
+DestroyFunc Maximize-or-Restore
+AddToFunc Maximize-or-Restore
++ I State 1 toggle
++ I Current (State 1) ResizeMoveMaximize 100% 100% 0 0
++ I Current (State 1) WindowStyle !Title
++ I TestRc (NoMatch) Maximize off
++ I TestRc (NoMatch) WindowStyle Title
+
+### Cycling Windows
+DestroyFunc Focus-Prev-Window
+AddToFunc Focus-Prev-Window
++ I Prev (!WindowListSkip, AcceptsFocus, !Iconic, CurrentPage) Warp-Focus
+
+DestroyFunc Focus-Next-Window
+AddToFunc Focus-Next-Window
++ I Next (!WindowListSkip, AcceptsFocus, !Iconic, CurrentPage) Warp-Focus
+
+DestroyFunc Warp-Focus
+AddToFunc Warp-Focus
++ I WarpToWindow 5p 5p
++ I Focus
+
+### Transparent Windows on Restart
+DestroyFunc Retransit
+AddToFunc Retransit
++ I All Exec exec $[FVWM_USERDIR]/transit $[w.id]
+
+### Menu Additions
+DestroyFunc WallpaperBrowser
+AddToFunc WallpaperBrowser I PipeRead 'test ! -d "$0/.thumbs" && mkdir "$0/.thumbs"; \
+   for i in "$0/"*; do \
+      test -f "$0/.thumbs/${i##*/}" \
+         -a "${i}" -ot "$0/.thumbs/${i##*/}" || { \
+            convert -quality 0 -scale 128 "${i}" "png:$0/.thumbs/${i##*/}" 2>/dev/null \
+               || continue; \
+         }; \
+   done; #next bit deletes thumbs of removed images\
+   for i in "$0/.thumbs/"*; do \
+      test -f "$0/${i##*/}" || rm $i ; \
+   done ;'
++ I DestroyMenu $0
++ I AddToMenu $0 "Change Wallpaper" Title
++ I PipeRead 'for file in "$0/".thumbs/*; do \
+      iname=${file##*/} ; \
+      echo AddToMenu $0 "\*$0/.thumbs/$iname*$iname" ChangeWallpaper \"$0/$iname\" ;\
+      done'
+# Add an option to browse the wallpaper directory with Rox (if installed)
++ I Test (x rox) AddToMenu $0 "\*folder-open.svg:64x64*Browse Directory (rox)" Exec exec rox $[fvwm_wallpaper_dir]
+# Add an option to browse the wallpaper directory with Nautilus (if installed)
++ I Test (x nautilus) AddToMenu $0 "\*folder-open.svg:64x64*Browse Directory (nautilus)" Exec exec nautilus --no-desktop $[fvwm_wallpaper_dir]
+
+# This is used by the wallpaper menu to save the wallpaper selction and then
+# activate it
+DestroyFunc ChangeWallpaper
+AddToFunc ChangeWallpaper
++ I Exec exec echo "$0" > .fvwm/wallpaper
++ I LoadWallpaper
+
+# This is used at startup (and by the wallpaper menu) to load the saved
+# wallpaper
+DestroyFunc LoadWallpaper
+AddToFunc LoadWallpaper
++ I Exec exec fvwm-root -r --dither `cat .fvwm/wallpaper`
