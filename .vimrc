@@ -161,3 +161,38 @@ nnoremap <C-L> :nohl<CR><C-L>
 
 
 "------------------------------------------------------------
+
+set hlsearch
+set nu
+set sw=3
+set ts=3
+set expandtab
+set completeopt=menuone,preview
+set hlsearch
+set nocompatible
+set mouse=
+"set spell
+
+filetype plugin on
+filetype indent on
+syntax enable
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType modula2 set syntax=markdown
+
+set completeopt=preview,menuone
+set linebreak "This is nice if wrap is on, it wraps at the word level
+runtime ftplugin/man.vim
+
+hi clear CursorLine 
+hi CursorLine guibg=#F4F4F4 ctermbg=darkgray
+hi clear CursorColumn 
+hi link CursorColumn CursorLine 
+"nnoremap <F4> :set cursorline! cursorcolumn!<CR>
+nnoremap <F4> :set cursorline!<CR>
+

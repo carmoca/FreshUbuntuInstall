@@ -3,6 +3,8 @@ FreshUbuntuInstall
 
 Run this command to customize a Fresh 14.04 LTS.
 
+WARNING: This script will download and install a **very** large amount of data. >=3,5 GB
+
 Note:
 
 1. You'll need to be in the sudoers file to run this command.
