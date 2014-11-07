@@ -113,7 +113,7 @@ set visualbell
 set t_vb=
 
 " Enable use of the mouse for all modes
-set mouse=a
+"set mouse=a
 
 " Set the command window height to 2 lines, to avoid many cases of having to
 " "press <Enter> to continue"
@@ -162,12 +162,11 @@ nnoremap <C-L> :nohl<CR><C-L>
 
 "------------------------------------------------------------
 
-set hlsearch
 set nu
 set sw=3
 set ts=3
 set expandtab
-set completeopt=menuone,preview
+"set completeopt=menuone,preview
 set hlsearch
 set nocompatible
 set mouse=
@@ -189,6 +188,11 @@ set completeopt=preview,menuone
 set linebreak "This is nice if wrap is on, it wraps at the word level
 runtime ftplugin/man.vim
 
+" With this line you can press F4 and the line the cursor is on it will
+" be highlighted with a horizontal highlight.
+"
+" Uncomment 'nnoremap <F4> :set cursorline! cursorcolumn!<CR>' (below)
+" for a vertical line to be drawn, too. 
 hi clear CursorLine 
 hi CursorLine guibg=#F4F4F4 ctermbg=darkgray
 hi clear CursorColumn 
