@@ -15,3 +15,9 @@ sudo apt-get install pandoc texlive-base texlive-binaries texlive-extra-utils te
 # Sets the default editor
 sudo update-alternatives --config editor
 
+echo "HISTFILESIZE=" >> ~/.bashrc
+echo "HISTSIZE=" >> ~/.bashrc
+
+
+mkdir ~/android
+
