@@ -45,6 +45,7 @@ sudo update-alternatives --config editor
 # vim
 # curl
 
+
 # Sets the default editor
 sudo update-alternatives --config editor
 
