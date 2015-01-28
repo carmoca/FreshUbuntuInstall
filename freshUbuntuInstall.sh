@@ -10,7 +10,7 @@ gsettings set com.canonical.desktop.interface scrollbar-mode normal
 # certain command line tools I prefer (htop, vim ranger)
 # build essentials (...and git and SVN)
 # gimp, imagemagick
-sudo apt-get install pandoc texlive-base texlive-binaries texlive-extra-utils texlive-font-utils texlive-generic-recommended texlive-latex-base texlive-latex-base-doc texlive-latex-extra texlive-latex-extra-doc texlive-latex-recommended texlive-latex-recommended-doc texlive-luatex texlive-pictures texlive-pictures-doc texlive-pstricks texlive-pstricks-doc texlive-xetex texlive-fonts-extra texlive-full fvwm stalonetray rxvt xcompmgr imagemagick htop ranger gimp virtualbox build-essential subversion git vim curl lib32stdc++6
+sudo apt-get install pandoc texlive-base texlive-binaries texlive-extra-utils texlive-font-utils texlive-generic-recommended texlive-latex-base texlive-latex-base-doc texlive-latex-extra texlive-latex-extra-doc texlive-latex-recommended texlive-latex-recommended-doc texlive-luatex texlive-pictures texlive-pictures-doc texlive-pstricks texlive-pstricks-doc texlive-xetex texlive-fonts-extra texlive-full fvwm stalonetray rxvt xcompmgr imagemagick htop ranger gimp virtualbox build-essential subversion git vim curl
 
 
 # Sets the default editor
@@ -20,7 +20,7 @@ echo "HISTFILESIZE=" >> ~/.bashrc
 echo "HISTSIZE=" >> ~/.bashrc
 echo "export JAVA_HOME=~/jdk1.8.0_25" >> ~/.bashrc
 echo "export SDK_HOME=~/android/android-sdk-linux" >> ~/.bashrc
-echo "export PATH=$PATH:$JAVA_HOME/bin:$SDK_HOME/tools:$SDK_HOME
+echo "export PATH=$PATH:$JAVA_HOME/bin:$SDK_HOME/tools:$SDK_HOME" >> ~/.bashrc
 
 mkdir ~/android
 
