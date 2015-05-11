@@ -5,10 +5,7 @@ Run this command to customize a Fresh 14.04 LTS.
 
 WARNING: This script will download and install a **very** large amount of data. >=3,5 GB
 
-pandoc texlive-base texlive-binaries texlive-extra-utils texlive-font-utils texlive-generic-recommended texlive-latex-base texlive-latex-base-doc texlive-latex-extra texlive-latex-extra-doc texlive-latex-recommended texlive-latex-recommended-doc texlive-luatex texlive-pictures texlive-pictures-doc texlive-pstricks texlive-pstricks-doc texlive-xetex texlive-fonts-extra texlive-full fvwm stalonetray rxvt xcompmgr imagemagick htop ranger gimp virtualbox build-essential subversion git vim curl lib32stdc++6
-* Sets the default editor
-sudo update-alternatives --config editor
-
+    pandoc texlive-base texlive-binaries texlive-extra-utils texlive-font-utils texlive-generic-recommended texlive-latex-base texlive-latex-base-doc texlive-latex-extra texlive-latex-extra-doc texlive-latex-recommended texlive-latex-recommended-doc texlive-luatex texlive-pictures texlive-pictures-doc texlive-pstricks texlive-pstricks-doc texlive-xetex texlive-fonts-extra texlive-full fvwm stalonetray rxvt xcompmgr imagemagick htop ranger gimp virtualbox build-essential subversion git vim curl lib32stdc++6
 
 * pandoc
 * texlive-base
@@ -47,7 +44,13 @@ sudo update-alternatives --config editor
 
 
 # Sets the default editor
-sudo update-alternatives --config editor
+    sudo update-alternatives --config editor
+
+# Sets the default terminal 
+
+Basically, when a window is resized, the text arranges itself to fit.
+
+    sudo update-alternatives --config x-terminal-emulator
 
 
 Note:
