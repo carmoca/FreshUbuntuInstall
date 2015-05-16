@@ -41,7 +41,7 @@ WARNING: This script will download and install a **very** large amount of data. 
 * git
 * Vim
 * curl
-
+* i386 support 
 
 # Sets the default editor
     sudo update-alternatives --config editor

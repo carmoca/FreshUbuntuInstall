@@ -10,7 +10,7 @@ gsettings set com.canonical.desktop.interface scrollbar-mode normal
 # certain command line tools I prefer (htop, vim ranger)
 # build essentials (...and git and SVN)
 # gimp, imagemagick
-sudo apt-get install pandoc texlive-base texlive-binaries texlive-extra-utils texlive-font-utils texlive-generic-recommended texlive-latex-base texlive-latex-base-doc texlive-latex-extra texlive-latex-extra-doc texlive-latex-recommended texlive-latex-recommended-doc texlive-luatex texlive-pictures texlive-pictures-doc texlive-pstricks texlive-pstricks-doc texlive-xetex texlive-fonts-extra texlive-full fvwm stalonetray rxvt xcompmgr imagemagick htop ranger gimp virtualbox build-essential subversion git vim curl rxvt-unicode libglib2.0-0:i386
+sudo apt-get install pandoc texlive-base texlive-binaries texlive-extra-utils texlive-font-utils texlive-generic-recommended texlive-latex-base texlive-latex-base-doc texlive-latex-extra texlive-latex-extra-doc texlive-latex-recommended texlive-latex-recommended-doc texlive-luatex texlive-pictures texlive-pictures-doc texlive-pstricks texlive-pstricks-doc texlive-xetex texlive-fonts-extra texlive-full fvwm stalonetray rxvt xcompmgr imagemagick htop ranger gimp virtualbox build-essential subversion git vim curl rxvt-unicode libglib2.0-0:i386 libfontconfig1:i386 libXrender1:i386 libsm6:i386 libfreetype6:i386 libxext6:i386
 
 
 # Sets the default editor
