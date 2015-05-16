@@ -21,7 +21,7 @@ HideGeometryWindow Always
 TitleStyle (Colorset 0 -- flat)
 MenuStyle * MenuColorset 0, ItemFormat "%s %i %| %l %|% %> ", PopupOffset -2 100, BorderWidth 1, Hilight3DThin
 
-SetEnv TERMINAL "rxvt"
+SetEnv TERMINAL "x-term-emulator"
 SetEnv fvwm_wallpaper_dir $[HOME]/conf/wallpaper/
 SetEnv LC_CTYPE zh_CN.UTF-8
 ImagePath .fvwm/icons:/usr/share/pixmaps/:+:$[fvwm_wallpaper_dir]
