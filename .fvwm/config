@@ -201,7 +201,8 @@ AddToFunc StartFunction
 
 DestroyFunc DualMonHack
 AddToFunc DualMonHack
-+ I Exec exec xrandr --output DVI-I-1 --left-of DVI-I-2
+#+ I Exec exec xrandr --output DVI-I-1 --left-of DVI-I-2
++ I Exec exec xrandr --output LVDS1 --auto --output VGA1 --left-of LVDS1 --auto
 + I Restart
 
 ### Moving, Raising, Lowering Windows
