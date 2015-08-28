@@ -18,10 +18,13 @@ sudo apt-get install pandoc texlive-base texlive-binaries texlive-extra-utils te
 sudo apt-get install fvwm stalonetray rxvt imagemagick 
 
 # These are some very handy tools to have supporting development and basic system navigation and configuration
-sudo apt-get install htop ranger gimp virtualbox build-essential subversion git vim curl rxvt-unicode
+sudo apt-get install htop ranger virtualbox build-essential subversion git vim curl rxvt-unicode
 
 # Extra 32bit installers - useful for where 32 bit development occurs
 sudo apt-get install libglib2.0-0:i386 libfontconfig1:i386 libXrender1:i386 libsm6:i386 libfreetype6:i386 libxext6:i386 
+
+# Graphing and graphic tools
+sudo apt-get install graphviz gimp 
 
 # If ibus-daemon and ibus-setup gives you any crap see this excellent writeup:
 # www.pinyinjoe.com/faq/ubuntu-1404-chinese-ime-problems-faq.htm
