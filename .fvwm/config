@@ -23,7 +23,7 @@ MenuStyle * MenuColorset 0, ItemFormat "%s %i %| %l %|% %> ", PopupOffset -2 100
 
 SetEnv TERMINAL "x-term-emulator"
 SetEnv fvwm_wallpaper_dir $[HOME]/conf/wallpaper/
-SetEnv LC_CTYPE zh_CN.UTF-8
+#SetEnv LC_CTYPE zh_CN.UTF-8
 ImagePath .fvwm/icons:/usr/share/pixmaps/:+:$[fvwm_wallpaper_dir]
 
 ## Styles
