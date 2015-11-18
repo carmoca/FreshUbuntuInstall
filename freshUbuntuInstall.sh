@@ -10,21 +10,7 @@ gsettings set com.canonical.desktop.interface scrollbar-mode normal
 # certain command line tools I prefer (htop, vim ranger)
 # build essentials (...and git and SVN)
 # gimp, imagemagick
-sudo apt-get install pandoc texlive-base texlive-binaries texlive-extra-utils texlive-font-utils texlive-generic-recommended texlive-latex-base texlive-latex-base-doc texlive-latex-extra texlive-latex-extra-doc texlive-latex-recommended texlive-latex-recommended-doc texlive-luatex texlive-pictures texlive-pictures-doc texlive-pstricks texlive-pstricks-doc texlive-xetex texlive-fonts-extra texlive-full
-
-# This installed components for FVWM
-# I removed xcompmgr because it was causing the background to be covered over
-#sudo apt-get install fvwm stalonetray rxvt xcompmgr imagemagick 
-sudo apt-get install fvwm stalonetray rxvt imagemagick 
-
-# These are some very handy tools to have supporting development and basic system navigation and configuration
-sudo apt-get install htop ranger virtualbox build-essential subversion git vim curl rxvt-unicode
-
-# Extra 32bit installers - useful for where 32 bit development occurs
-sudo apt-get install libglib2.0-0:i386 libfontconfig1:i386 libXrender1:i386 libsm6:i386 libfreetype6:i386 libxext6:i386 
-
-# Graphing and graphic tools
-sudo apt-get install graphviz gimp 
+sudo apt-get install pandoc texlive-base texlive-binaries texlive-extra-utils texlive-font-utils texlive-generic-recommended texlive-latex-base texlive-latex-base-doc texlive-latex-extra texlive-latex-extra-doc texlive-latex-recommended texlive-latex-recommended-doc texlive-luatex texlive-pictures texlive-pictures-doc texlive-pstricks texlive-pstricks-doc texlive-xetex texlive-fonts-extra texlive-full fvwm stalonetray rxvt imagemagick htop ranger virtualbox build-essential subversion git vim curl rxvt-unicode pip libglib2.0-0:i386 libfontconfig1:i386 libXrender1:i386 libsm6:i386 libfreetype6:i386 libxext6:i386 graphviz gimp 
 
 # If ibus-daemon and ibus-setup gives you any crap see this excellent writeup:
 # www.pinyinjoe.com/faq/ubuntu-1404-chinese-ime-problems-faq.htm
