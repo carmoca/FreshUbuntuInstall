@@ -21,7 +21,7 @@ HideGeometryWindow Always
 TitleStyle (Colorset 0 -- flat)
 MenuStyle * MenuColorset 0, ItemFormat "%s %i %| %l %|% %> ", PopupOffset -2 100, BorderWidth 1, Hilight3DThin
 
-SetEnv TERMINAL "x-term-emulator"
+SetEnv TERMINAL "x-terminal-emulator"
 SetEnv fvwm_wallpaper_dir $[HOME]/conf/wallpaper/
 #SetEnv LC_CTYPE zh_CN.UTF-8
 ImagePath .fvwm/icons:/usr/share/pixmaps/:+:$[fvwm_wallpaper_dir]
@@ -150,7 +150,7 @@ Test (x xclipboard) AddToMenu DynamicAppMenu "%paste2.svg:24x24%Clipboard" Exec 
 
 ## Key Bindings
 Key Return A 4 Exec exec $TERMINAL
-Key T A 4 Exec exec $TERMINAL
+Key t A 4 Exec exec $TERMINAL
 
 Key h A 4 GoToPage -1p +0p
 Key k A 4 GoToPage +0p -1p
