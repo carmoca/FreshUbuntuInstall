@@ -66,7 +66,7 @@ Choose the one correlating to urxvt. Such as:
     ------------------------------------------------------------
     * 6            /usr/bin/urxvt                    20        manual mode
 
-***(Only the proper entry is shown - others removed for brevity)***
+i***(Only the proper entry is shown - others removed for brevity)***
 
 Note:
 
@@ -74,3 +74,8 @@ Note:
 1. Put the .fvwm folder and .Xresources file in the user's home directory.
 1. I removed the .fvwm/icons folder because I wasn't sure of their origin. I don't want a copyright lawsuit so I deleted them. They're available from IcoMoon.io if you're **that** interested. YMMV
 1. Added some code to adjust history file settings - currently set to infinite.
+
+Thanks and Shout-outs
+=====================
+
+I'd like to thank my friend Stephen for his excellent fvwm configuration files. Without which I'd know less about linux and would probably still be using Unity. Nah, I'd replace that abomination with something else.
