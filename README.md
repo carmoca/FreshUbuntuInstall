@@ -50,6 +50,13 @@ WARNING: This script will download and install a **very** large amount of data. 
 * curl
 * i386 support 
 * graphviz
+* arduino
+* chromium-browser
+* bison
+* flex
+* splint
+* exuberant-ctags
+* clamav
 
 # Sets the default editor
     sudo update-alternatives --config editor
