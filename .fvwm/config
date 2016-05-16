@@ -23,7 +23,7 @@ MenuStyle * MenuColorset 0, ItemFormat "%s %i %| %l %|% %> ", PopupOffset -2 100
 
 SetEnv TERMINAL "x-terminal-emulator"
 SetEnv fvwm_wallpaper_dir $[HOME]/conf/wallpaper/
-#SetEnv LC_CTYPE zh_CN.UTF-8
+#SetEnv LC_CTYPE en_US.UTF-8
 ImagePath .fvwm/icons:/usr/share/pixmaps/:+:$[fvwm_wallpaper_dir]
 
 ## Styles
@@ -126,7 +126,8 @@ AddToMenu MenuFvwmRoot
 + "%loop2.svg:24x24%Reload" Restart
 + "" Nop
 # Put a lock icon in the menu if xautolock is present
-Test (x xscreensaver) AddToMenu MenuFvwmRoot "%lock.svg:24x24%Lock" Exec exec xscreensaver-command -l
+#Test (x xscreensaver) AddToMenu MenuFvwmRoot "%lock.svg:24x24%Lock" Exec exec xscreensaver-command -l
+Test (x gnome-screensaver) AddToMenu MenuFvwmRoot "%lock.svg:24x24%Lock" Exec exec gnome-screensaver-command -l
 
 AddToMenu MenuFvwmRoot
 + "%exit.svg:24x24%Exit" Quit
@@ -166,7 +167,8 @@ Key n A 4 Focus-Next-Window
 
 Key Escape A 4 Menu MenuFvwmRoot
 Key r A 4 Resize Direction SE
-Key l A CM  Exec exec xscreensaver-command -l
+#Key l A CM  Exec exec xscreensaver-command -l
+Key l A CM  Exec exec gnome-screensaver-command -l
 
 Mouse 1 1 A Menu WindowOpsMenu
 Mouse 1 I A Menu WindowOpsMenu
@@ -194,15 +196,19 @@ AddToFunc StartFunction
 + I Module FvwmEvent
 + I Test (Restart) Retransit
 #+ I Test (init) Exec exec /usr/bin/xscreensaver -no-splash
-+ I Test (init, x xscreensaver) Exec exec xscreensaver 
+#+ I Test (init, x xscreensaver) Exec exec xscreensaver 
++ I Test (init, x gnome-screensaver) Exec exec gnome-screensaver 
 + I Test (init) Schedule 1000 DualMonHack
 + I Test (init) Exec exec ibus-daemon -drx
 + I Test (init) Exec exec xrdb -merge .Xresources
 
 DestroyFunc DualMonHack
 AddToFunc DualMonHack
+#+ I Exec exec xrandr --output HDMI1 --left-of eDP1
++ I Exec exec xrandr --output HDMI1 --left-of eDP1 --output VGA1 --left-of HDMI1
 #+ I Exec exec xrandr --output DVI-I-1 --left-of DVI-I-2
-+ I Exec exec xrandr --output LVDS1 --auto --output VGA1 --left-of LVDS1 --auto
+#+ I Exec exec xrandr --output LVDS1 --auto --output VGA1 --left-of LVDS1 --auto
+#+ I Exec exec xrandr --output VGA1 --left-of eDP1 --auto
 + I Restart
 
 ### Moving, Raising, Lowering Windows
