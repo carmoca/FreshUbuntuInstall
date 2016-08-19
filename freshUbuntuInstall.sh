@@ -29,6 +29,7 @@ echo "HISTSIZE=" >> ~/.bashrc
 echo "export JAVA_HOME=~/jdk1.8.0_25" >> ~/.bashrc
 echo "export SDK_HOME=~/android/android-sdk-linux" >> ~/.bashrc
 echo "export PATH=$PATH:$JAVA_HOME/bin:$SDK_HOME/tools:$SDK_HOME" >> ~/.bashrc
+echo "export PATH=$JAVA_HOME:$JAVA_HOME/bin:$SDK_HOME:$SDK_HOME/bin:$SDK_HOME/tools:  $STD_PATH:~/bin" >> ~/.bashrc
 
 mkdir ~/android
 mkdir ~/workspace
