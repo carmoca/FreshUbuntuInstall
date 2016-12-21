@@ -1,0 +1,15 @@
+Introduction
+============
+
+This document simply covers outstanding steps that either cant or I don't know how to automate.
+
+Post-installation Steps
+-----------------------
+
+1. Open firefox and install extensions
+  1. Ublock Origin
+  1. Privacy Badger
+  1. Ghostery
+  1. AdBlock Plus
+  1. NoScript
+  1. HTTPS Everywhere
